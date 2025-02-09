@@ -1,0 +1,30 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "app.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "50mb",
+          "runtime": "python3.12", 
+          "includeFiles": ["model/**", "static/**", "templates/**"]
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "app.py"
+      }
+    ],
+      "functions": {
+          "app.py": {
+              "memory": 2048,
+              "maxDuration": 60
+          }
+      }
+  }
