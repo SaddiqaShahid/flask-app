@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🤖🎨 Prediction Result 🔢🔮</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            color: #555;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #FFDA6B, #FFECB3, #C8E6C9, #FFF9C4); /* Yellowish Colors */
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h1 {
+            color: #FF8F00; /* Amber */
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #795548; /* Brown */
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .result-container {
+            background-color: #FFFDE7; /* Light Yellow */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+            width: 500px;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        img {
+            max-width: 150px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+            margin-bottom: 20px;
+        }
+
+        .prediction {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #8BC34A; /* Light Green */
+        }
+
+        .confidence {
+            color: #6D4C41; /* Brown */
+        }
+
+        .error {
+            color: #D32F2F; /* Dark Red */
+            background-color: #FFCDD2; /* Light Red */
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #D32F2F;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        a {
+            display: inline-block;
+            background-color: #8BC34A; /* Light Green */
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #689F38; /* Darker Green */
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #A1887F; /* Light Brown */
+            font-size: 0.9em;
+            padding: 10px;
+            border-top: 1px solid #E0E0E0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="result-container">
+        <h1>Prediction Result 🔢</h1>
+
+        <p>Model Used: <b>{{ model_type.upper() }}</b></p>
+
+        {% if image_path %}
+            <img src="{{ url_for('static', filename=image_path) }}" alt="Uploaded Image">
+        {% endif %}
+
+        {% if predicted_digit is not none %}
+            <p class="prediction">Predicted Digit: <b>{{ predicted_digit }}</b></p>
+            <p class="confidence">Confidence: <b>{{ "%.2f" % (confidence * 100) }}%</b></p>
+        {% else %}
+            <p class="error">Error: Could not make a prediction. 😔</p>
+        {% endif %}
+
+        <a href="/">✨ Try Another Image! 🚀</a>
+    </div>
+
+    <footer>
+        Created by Saddiqa Shahid
+    </footer>
+
+</body>
+</html>

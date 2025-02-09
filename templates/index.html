@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>🤖🎨 Digit Recognition Funhouse! 🎉🔢</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            color: #555;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            /* Add the moving background */
+            background: linear-gradient(-45deg, #FFDA6B, #FFECB3, #C8E6C9, #FFF9C4); /* Yellowish Colors */
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+@keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    h1 {
+        color: #FF8F00; /* Amber */
+        text-align: center;
+        margin-bottom: 15px;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+        color: #795548; /* Brown */
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .error {
+        color: #D32F2F; /* Dark Red */
+        background-color: #FFCDD2; /* Light Red */
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #D32F2F;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    form {
+        background-color: #FFFDE7; /* Light Yellow */
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2); /* Stronger Shadow */
+        width: 500px;
+        max-width: 90%;
+        text-align: left;
+        display: grid;
+        grid-template-columns: auto; /* Single column for now */
+        grid-gap: 15px;
+    }
+
+    label {
+        display: block;
+        color: #5D4037; /* Deep Brown */
+        font-weight: 600;
+    }
+
+    input[type="file"] {
+        padding: 12px;
+        border: 2px solid #FFB300; /* Deep Amber Border */
+        border-radius: 8px;
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #FFECB3; /* Light Yellow Background */
+        color: #6D4C41; /* Brown */
+    }
+
+    input[type="radio"] {
+        margin-right: 8px;
+        transform: scale(1.2); /* Enlarge radio buttons */
+    }
+
+    .radio-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .radio-group label {
+        margin-right: 20px;
+        margin-bottom: 0; /* Remove default label margin */
+    }
+
+    button {
+        background-color: #8BC34A; /* Light Green */
+        color: white;
+        padding: 16px 32px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background-color 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Button Shadow */
+    }
+
+    button:hover {
+        background-color: #689F38; /* Darker Green */
+    }
+
+    footer {
+        margin-top: 30px;
+        text-align: center;
+        color: #A1887F; /* Light Brown */
+        font-size: 0.9em;
+        padding: 10px;
+        border-top: 1px solid #E0E0E0; /* Light Grey */
+    }
+
+    .robot-image {
+        width: 150px;
+        margin-bottom: 20px;
+    }
+</style>
+</head>
+<body>
+    <h1>🤖 AI Digit Recognizer 🔢🔮</h1>
+    <p>📸 Upload a digit image, and our AI will predict it! </p>
+{% if error %}
+    <p class="error">{{ error }}</p>
+{% endif %}
+
+<form method="post" enctype="multipart/form-data">
+
+    <label for="image">Upload Digit Image:</label>
+    <input type="file" id="image" name="image" accept="image/*" required>
+
+    <label>⚙ Select Model Type:</label>
+    <div class="radio-group">
+        <input type="radio" id="ann" name="model_type" value="ann">
+        <label for="ann"> ANN </label>
+
+        <input type="radio" id="cnn" name="model_type" value="cnn" checked>
+        <label for="cnn">CNN </label>
+    </div>
+
+    <button type="submit">🔮Predict Digit!🚀</button>
+</form>
+
+<footer>
+    Created by Saddiqa Shahid | 📧 <a href="mailto:saddiqa.atta.shahid@gmail.com">saddiqa.atta.shahid@gmail.com</a>
+</footer>
+</body>
+</html>
